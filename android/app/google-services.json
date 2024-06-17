@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "415667329980",
+    "project_id": "flutter-projects-2cf3e",
+    "storage_bucket": "flutter-projects-2cf3e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:415667329980:android:83a828bace78e8fbc9e9b9",
+        "android_client_info": {
+          "package_name": "com.ernestoalfonso.push_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1irxyxfLMF1C1WyWXNzJMTKA00Kb2YYE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
