@@ -1,7 +1,9 @@
 part of 'notifications_bloc.dart';
 
 class NotificationsState extends Equatable {
+
   // List<dynamic> => Creación de modelo de notificaciones
+  
 
   final AuthorizationStatus status;
   final List<dynamic> notifications;
