@@ -71,9 +71,10 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
     if (settings.authorizationStatus != AuthorizationStatus.authorized) return;
 
     final token = await messaging.getToken();
+    print(token);
   }
 
-  void _handleRemoteMessage(RemoteMessage message) async {
+  void handleRemoteMessage(RemoteMessage message) async {
     if (message.notification == null) return;
 
     final notification = PushMessage(
@@ -92,7 +93,7 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
   }
 
   void _onForegroundMessage() {
-    FirebaseMessaging.onMessage.listen(_handleRemoteMessage);
+    FirebaseMessaging.onMessage.listen(handleRemoteMessage);
   }
 
   void requestPermission() async {
@@ -108,4 +109,14 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
     // Add => añadir nuevo evento
     add(NotificationStatusChanged(settings.authorizationStatus));
   }
+
+  PushMessage? getMessagesById(String pushMessageId) {
+    // Any => encuentra el primer elemento que cumple está condición
+    final exist = state.notifications.any((element) => element.messageId == pushMessageId);
+    if (!exist) return null;
+
+    return state.notifications.firstWhere((element) => element.messageId == pushMessageId);
+  }
+
+
 }
