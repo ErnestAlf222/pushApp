@@ -4,6 +4,7 @@ import 'package:equatable/equatable.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:push_app/config/local_notifications/local_notifications.dart';
 import 'package:push_app/domain/entities/push_message.dart';
 
 import 'package:push_app/firebase_options.dart';
@@ -71,7 +72,7 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
     if (settings.authorizationStatus != AuthorizationStatus.authorized) return;
 
     final token = await messaging.getToken();
-    print(token);
+    
   }
 
   void handleRemoteMessage(RemoteMessage message) async {
@@ -107,6 +108,9 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
       sound: true,
     );
     // Add => añadir nuevo evento
+    await requestPermissionLocalNotifications();
+
+    // Solicitar permiso a las  local Notification
     add(NotificationStatusChanged(settings.authorizationStatus));
   }
 
